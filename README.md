@@ -25,7 +25,11 @@ These persisted analysis should survive a restart of the server process.
 
 
 ## Installation
+- run `pipenv install` to install pip dependencies
+- `pipenv shell` to enter the created virtualenv or preprend all other commands with `pipenv run`
 
 ### Requirements
 - python 3.7+
+- pipenv
+
 
