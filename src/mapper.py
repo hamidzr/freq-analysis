@@ -8,14 +8,16 @@ with open('config/blacklist.txt', 'r', encoding='utf-8') as f:
   lines = [line.strip() for line in f.readlines()]
   black_list = set(lines)
 
+# needs black_list set globally, this is to avoid relaoding from this on each call
 def _mapper(line, remove_stop_words=True):
   SERPARATOR=' '
   line = line.strip()
+  if line == '': return
   line = line.lower()
   words = line.split(SERPARATOR)
   for word in words:
-    # TODO make it optional
-    if (not remove_stop_words) or (word not in black_list): # stop words
+    if (not remove_stop_words
+        or word not in black_list): # stop words
       yield (word, 1) # emit the word
 
 def mapper(line):
