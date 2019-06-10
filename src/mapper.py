@@ -1,11 +1,15 @@
 #!/usr/bin/env python
 
-def mapper(lines):
-  for line in lines:
-    line = line.strip()
-    words = line.split()
-    for word in words:
-      yield (word, 1) # emit the word
+
+def _mapper(line):
+  SERPARATOR=' '
+  line = line.strip()
+  words = line.split(SERPARATOR)
+  for word in words:
+    yield (word, 1) # emit the word
+
+def mapper(line):
+  return [rv for rv in _mapper(line)]
 
 
 if __name__ == '__main__':
