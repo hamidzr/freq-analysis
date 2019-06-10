@@ -10,3 +10,17 @@
 - Save the most recent 10 frequency analysis (original text, stop words setting, and resulting word frequencies), allowing the user to navigate back to view a previous analysis for comparison.
 These persisted analysis should survive a restart of the server process.
 
+
+## Steps
+- count the tokens
+- group using the stemming algorithm: conjugated and plural words
+- UI
+- save and present history
+
+
+## Installation
+
+### Env vars
+
+
+### Packages
