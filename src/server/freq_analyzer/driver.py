@@ -5,10 +5,10 @@ import argparse
 import operator
 
 # local
-from mapper import mapper
-from reducer import reducer
-from mapReduce import MapReduce
-from stemming import merge_stems
+from freq_analyzer.mapper import mapper
+from freq_analyzer.reducer import reducer
+from freq_analyzer.mapReduce import MapReduce
+from freq_analyzer.stemming import merge_stems
 
 parser = argparse.ArgumentParser(description="file to word mapper")
 parser.add_argument('--input', help='input file')

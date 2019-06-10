@@ -30,7 +30,7 @@ These persisted analysis should survive a restart of the server process.
 
 ### Env variables
 ```
-export FLASK_APP=src/server.py
+export FLASK_APP=src/server/server.py
 export FLASK_ENV=development
 export FLASK_DEBUG=1
 ```
