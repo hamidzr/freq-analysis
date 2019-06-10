@@ -23,13 +23,18 @@ These persisted analysis should survive a restart of the server process.
   - [ ] setup endpoints
 - [ ] create a UI
 
+- [ ] do we want non alphanumeric string? what about pure numbers
+
 - [ ] improve stemming
 - [ ] add unit and e2e testing
 - [ ] improve the frontend build setup, minify, etc using webpack?
 - [ ] decouple request submission from getting the response. non blocking: sockets? pulling?
 - [ ] use a logger instead of console.log
 - [ ] keep it consistent between `camelCase` vs `snake_case`
-- [ ] add linters
+- [ ] dev tools
+  - [ ] add linters
+  - [ ] watch and hot reload
+
 
 
 ## Installation
