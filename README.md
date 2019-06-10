@@ -28,8 +28,13 @@ These persisted analysis should survive a restart of the server process.
 - run `pipenv install` to install pip dependencies
 - `pipenv shell` to enter the created virtualenv or preprend all other commands with `pipenv run`
 
+### Env variables
+```
+export FLASK_APP=src/server.py
+export FLASK_ENV=development
+export FLASK_DEBUG=1
+```
+
 ### Requirements
 - python 3.7+
 - pipenv
-
-
