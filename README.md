@@ -17,8 +17,15 @@ These persisted analysis should survive a restart of the server process.
 - UI
 - save and present history
 
+## TODO
+- [ ] create simple webserver, flask
+- [ ] simple database setup, sqlite, sqlalchemy?
+- [ ] setup a UI
+- [ ] improve stemming
+
 
 ## Installation
 
 ### Requirements
 - python 3.7+
+
