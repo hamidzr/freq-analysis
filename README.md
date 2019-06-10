@@ -18,10 +18,14 @@ These persisted analysis should survive a restart of the server process.
 - save and present history
 
 ## TODO
-- [ ] create simple webserver, flask
-- [ ] simple database setup, sqlite, sqlalchemy?
-- [ ] setup a UI
+- [x] create simple webserver, flask
+- [-] simple database setup, sqlite, sqlalchemy?
+  - [ ] setup endpoints
+- [ ] create a UI
+
 - [ ] improve stemming
+- [ ] add unit and e2e testing
+- [ ] improve the frontend build setup, minify, etc using webpack?
 
 
 ## Installation
