@@ -10,6 +10,7 @@ from freq_analyzer.main import analyze
 
 app = Flask(__name__, static_url_path='', static_folder='../../public')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
