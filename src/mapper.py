@@ -1,12 +1,22 @@
 #!/usr/bin/env python
 
+# we load and define blacklist once as a set
+# lookup O(1)
+black_list = None
 
-def _mapper(line):
+with open('config/blacklist.txt', 'r', encoding='utf-8') as f:
+  lines = [line.strip() for line in f.readlines()]
+  black_list = set(lines)
+
+def _mapper(line, remove_stop_words=True):
   SERPARATOR=' '
   line = line.strip()
+  line = line.lower()
   words = line.split(SERPARATOR)
   for word in words:
-    yield (word, 1) # emit the word
+    # TODO make it optional
+    if (not remove_stop_words) or (word not in black_list): # stop words
+      yield (word, 1) # emit the word
 
 def mapper(line):
   return [rv for rv in _mapper(line)]
