@@ -1,15 +1,33 @@
 # flask web server
 
 from flask import Flask, request, redirect
+from flask_sqlalchemy import SQLAlchemy
+import datetime
+import json
 
 # local
 from freq_analyzer.main import analyze
 
-
 app = Flask(__name__, static_url_path='', static_folder='../../public')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+db = SQLAlchemy(app)
+
+
+class Record(db.Model):
+  id = db.Column(db.Integer(), primary_key=True)
+  removeStopWords =  db.Column(db.Boolean(), default=True)
+  originalText = db.Column(db.Text())
+  result = db.Column(db.Text())
+  createdAt = db.Column(db.DateTime(), default=datetime.datetime.now())
+
+db.create_all()
+
 
 @app.route("/")
 def root():
+  # res = database.select_all()
+  # res = database.insert('adsasd', True, 'asdff')
+  print(Record.query.all()[0].result)
   return app.send_static_file('index.html')
 
 
@@ -26,8 +44,12 @@ def upload_file():
       return redirect(request.url)
 
     if file and file.content_type == 'text/plain':
-      lines = file.read().decode('utf-8').split('\n')
+      text = file.read().decode('utf-8')
+      lines = text.split('\n')
       word_counts = analyze(lines)
+      rec = Record(removeStopWords=True, originalText=text, result=json.dumps(word_counts))
+      db.session.add(rec)
+      db.session.commit()
       print(word_counts[:25])
       # return word_counts[:25]
       # filename = secure_filename(file.filename)
