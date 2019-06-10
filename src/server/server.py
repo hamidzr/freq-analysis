@@ -3,10 +3,7 @@
 from flask import Flask
 
 # local
-from freq_analyzer.mapper import mapper
-from freq_analyzer.reducer import reducer
-from freq_analyzer.mapReduce import MapReduce
-from freq_analyzer.stemming import merge_stems
+from freq_analyzer.main import analyze
 
 
 app = Flask(__name__, static_url_path='', static_folder='../../public')
