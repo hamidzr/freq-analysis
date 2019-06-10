@@ -37,3 +37,4 @@
 ## Assumptions:
 - single user app
 - no authentication, no AAA
+- assuming we are not using any spellchecking and that the words from the input are valid with no typos

@@ -20,7 +20,5 @@ These persisted analysis should survive a restart of the server process.
 
 ## Installation
 
-### Env vars
-
-
-### Packages
+### Requirements
+- python 3.7+
