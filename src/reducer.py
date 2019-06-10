@@ -2,9 +2,17 @@
 
 import sys
 
-# WARN requires sorted input
+# hashmap implementation
+# mappedWords mapreduce key value pair
 def reducer(mappedWords):
+  word, occurances = mappedWords
+  return (word, sum(occurances))
 
+# WARN requires sorted input
+def reducer2(mappedWords):
+
+  word, occurances = item
+  return (word, sum(occurances))
   current_word = None
   current_count = 0
   word = None
