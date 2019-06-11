@@ -3,7 +3,10 @@
 from flask import Flask, request
 from flask_api import status
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 import datetime
+
+
 import json
 
 # local
@@ -12,6 +15,7 @@ from freq_analyzer.main import analyze
 app = Flask(__name__, static_url_path='', static_folder='../../public')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+CORS(app)
 db = SQLAlchemy(app)
 
 
