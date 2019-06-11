@@ -20,13 +20,15 @@ class Record(db.Model):
   id = db.Column(db.Integer(), primary_key=True)
   removeStopWords =  db.Column(db.Boolean(), default=True)
   originalText = db.Column(db.Text())
-  result = db.Column(db.Text()) # word counts
-  createdAt = db.Column(db.DateTime(), default=datetime.datetime.now())
+  wordCounts = db.Column(db.Text()) # word counts
 
   def asDict(self):
+    # FIXME limited the scope to we should return the original text as a downloadable 
     mDic = {
       'id': self.id,
       'removeStopWords': self.removeStopWords,
+      'originalText': self.originalText[:1000],
+      'wordCounts': json.loads(self.wordCounts)[:25],
     };
     # TODO complete this
     return mDic
@@ -40,13 +42,14 @@ def analysisRequst(text, removeStopWords):
 
   word_counts = analyze(lines)
   rec = Record(removeStopWords=True,
-               originalText=text, result=json.dumps(word_counts))
+               originalText=text, wordCounts=json.dumps(word_counts))
   # save it
   db.session.add(rec)
   db.session.commit()
 
-  top_words = [[w, c] for w,c in word_counts[:25]]
-  return json.dumps(top_words)
+  recs = Record.query.order_by(Record.id.desc()).limit(1).all()
+  rec = recs[0].asDict()
+  return json.dumps(rec)
 
 
 @app.route("/")
@@ -78,8 +81,7 @@ def new_request():
 
 @app.route('/analysis', methods=['GET'])
 def fetch_history():
-  # TODO limit to last 10
-  recs = Record.query.all()
+  recs = Record.query.order_by(Record.id.desc()).limit(10).all()
   recs = [r.asDict() for r in recs]
   return json.dumps(recs)
 
