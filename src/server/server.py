@@ -45,7 +45,7 @@ def analysisRequst(text, removeStopWords):
   lines = text.split('\n')
 
   word_counts = analyze(lines)
-  rec = Record(removeStopWords=True,
+  rec = Record(removeStopWords=removeStopWords,
                originalText=text, wordCounts=json.dumps(word_counts))
   # save it
   db.session.add(rec)
@@ -77,7 +77,7 @@ def new_request():
       text = file.read().decode('utf-8')
 
       # default to removing stopwords
-      removeStopWords = False if request.form['removeStopWords'] == False else True
+      removeStopWords = False if request.form['removeStopWords'] == 'false' else True
 
       return analysisRequst(text, removeStopWords)
 
