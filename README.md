@@ -19,9 +19,9 @@ These persisted analysis should survive a restart of the server process.
 
 ## TODO
 - [x] create simple webserver, flask
-- [-] simple database setup, sqlite, sqlalchemy?
-  - [ ] setup endpoints
-- [ ] create a UI
+- [x] simple database setup, sqlite, sqlalchemy?
+  - [x] setup endpoints
+- [x] create a UI
 
 - [ ] do we want non alphanumeric string? what about pure numbers
 
@@ -34,12 +34,14 @@ These persisted analysis should survive a restart of the server process.
 - [ ] dev tools
   - [ ] add linters
   - [ ] watch and hot reload
-
+- create an integrated build script
 
 
 ## Installation
 - run `pipenv install` to install pip dependencies
 - `pipenv shell` to enter the created virtualenv or preprend all other commands with `pipenv run`
+
+- cd to `src/client` and run `npm i && npm run build`
 
 ### Env variables
 ```
@@ -51,3 +53,4 @@ export FLASK_DEBUG=1
 ### Requirements
 - python 3.7+
 - pipenv
+- nodejs 8+
