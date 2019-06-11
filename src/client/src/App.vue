@@ -9,24 +9,27 @@
 
     <v-content>
       <RequestForm/>
-      <ResultsTable/>
+      <Record/>
+      <RecordHistory/>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import ResultsTable from './components/ResultsTable'
+import RecordHistory from './components/RecordHistory'
 import RequestForm from './components/RequestForm'
+import Record from './components/Record'
 
 export default {
   name: 'App',
   components: {
-    ResultsTable,
-    RequestForm
+    RecordHistory,
+    RequestForm,
+    Record,
   },
   data () {
     return {
-      //
+      state: store.state,
     }
   }
 }
