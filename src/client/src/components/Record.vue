@@ -3,6 +3,7 @@
     <p>showing record {{record.id}} </p>
     <ul>
       <li>id: {{ record.id }}</li>
+      <li>removeStopWords?: {{ record.removeStopWords }}</li>
       <li>top words: {{ topWords(record) }}</li>
       <li>file: {{ record.originalText.substring(0, 50) }}</li>
     </ul>
