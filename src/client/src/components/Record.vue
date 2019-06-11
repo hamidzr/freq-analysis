@@ -3,13 +3,10 @@
     <v-card>
       <v-card-title primary-title>
       <h3>Request: {{record.id}} </h3>
-      <ul>
-        <li>removeStopWords?: {{ record.removeStopWords }}</li>
-        <li>top words: {{ topWords(record) }}</li>
-      </ul>
+      <p>Top words <span v-show=record.removeStopWords>(excluding stop words)</span>: {{ topWordsStr }}</p>
       <v-card-actions>
-          <v-btn flat color="orange" @click="downloadOriginalText">Original File</v-btn>
-        </v-card-actions>
+        <v-btn flat color="orange" @click="downloadOriginalText">Original File</v-btn>
+      </v-card-actions>
       </v-card-title>
     </v-card>
   </v-container>
@@ -29,6 +26,11 @@ export default {
       return this.state.records
         .find(rec => rec.id == this.recordId);
     },
+
+    topWordsStr() {
+      let recs = this.record.wordCounts.slice(0, 25);
+      return recs.map(pair => pair.join(':')).join(' | ');
+    }
   },
 
   props: {
@@ -42,10 +44,6 @@ export default {
   },
 
   methods: {
-    topWords(rec) {
-      return rec.wordCounts.slice(0, 25);
-    },
-
     downloadOriginalText() {
       let fname = `record-${this.record.id}-originalText.txt`;
       this.download(fname, this.record.originalText);
