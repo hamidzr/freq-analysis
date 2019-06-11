@@ -15,13 +15,13 @@
     </noscript>
     <script>
       const store = {
+        serverAddress: 'http://localhost:5000',
         state: {
           records: [
             {
               id: 0,
               removeStopWords: true,
-              createdAt: new Date(),
-              result: [['hi', 124]],
+              wordCounts: [['hi', 124]],
               originalText: 'asdf',
             }
           ],

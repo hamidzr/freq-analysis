@@ -49,9 +49,7 @@ export default {
 
         // load with filereader to peek inside?
       } else {
-        this.fileName = '';
-        this.textFile = '';
-        this.textUrl = '';
+        this.resetFrom();
       }
     },
 
@@ -67,8 +65,15 @@ export default {
     },
 
     async uploadFormData() {
-      const HOST = 'http://localhost:5000';
-      await axios.post(HOST+'/analysis', this.formData);
+      let { data } = await axios.post(store.serverAddress+'/analysis', this.formData);
+      return data;
+    },
+
+    resetFrom() {
+      this.fileName = '';
+      this.textFile = '';
+      this.textUrl = '';
+      this.formData = new FormData();
     },
 
   }

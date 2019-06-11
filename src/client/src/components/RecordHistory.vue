@@ -26,7 +26,7 @@ export default {
 
   methods: {
     async fetchRecords() {
-      let { data } = await axios.get('/analysis');
+      let { data } = await axios.get(store.serverAddress+'/analysis');
       return data;
     }
   }
