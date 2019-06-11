@@ -14,7 +14,9 @@
           >
       </v-flex>
 
-        <v-btn color="info" @click='submit'>Submit</v-btn>
+        <v-btn color="info" @click="submit" :disabled="!submitEnabled">Submit</v-btn>
+        <v-btn color="success" @click="resetFrom">Clear</v-btn>
+
     </v-form>
   </v-container>
 </template>
@@ -25,6 +27,8 @@ import axios from 'axios'
 export default {
   data: () => ({
     state: store.state,
+    submitEnabled: false,
+
     title: 'Text Upload',
     fileName: '',
     textUrl: '',
@@ -47,6 +51,7 @@ export default {
           this.fileName = files[0].name;
           this.formData.append('file', files[0], this.fileName);
         }
+        this.submitEnabled = true;
 
         // load with filereader to peek inside?
       } else {
@@ -76,6 +81,7 @@ export default {
       this.fileName = '';
       this.textFile = '';
       this.textUrl = '';
+      this.submitEnabled = false;
       this.formData = new FormData();
     },
 
