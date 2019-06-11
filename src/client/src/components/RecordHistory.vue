@@ -1,8 +1,8 @@
 <template>
   <v-container>
     <v-list>
-      <template v-for="(item, index) in state.records">
-        <li :key="item.id">{{ item.id }}</li>
+      <template v-for="item in state.records">
+        <li :key="item.id" @click="setActiveRecId(item.id)">{{ item.id }}</li>
       </template>
     </v-list>
   </v-container>
@@ -20,14 +20,24 @@ export default {
   },
 
   async created() {
-    // let recs = await this.fetchRecords();
-    // this.state.records = recs;
+    await this.fetchRecords();
   },
 
   methods: {
     async fetchRecords() {
-      let { data } = await axios.get(store.serverAddress+'/analysis');
-      return data;
+      try {
+        let { data } = await axios.get(store.serverAddress+'/analysis');
+        data = data.sort((a,b) => a.id > b.id ? -1 : 1);
+        this.state.records = data;
+        this.state.activeRecId = data[0].id;
+        return data;
+      } catch(e) {
+        console.log(e);
+      }
+    },
+
+    setActiveRecId(id) {
+      this.state.activeRecId = id;
     }
   }
 }

@@ -24,6 +24,7 @@ import axios from 'axios'
 
 export default {
   data: () => ({
+    state: store.state,
     title: 'Text Upload',
     fileName: '',
     textUrl: '',
@@ -57,7 +58,9 @@ export default {
       try {
         // TODO run before submission tasks
         this.formData.append('removeStopWords', this.removeStopWords);
-        await this.uploadFormData();
+        let addedRec = await this.uploadFormData();
+        this.state.records.unshift(addedRec); // add to the begining
+        this.state.activeRecId = addedRec.id;
       } catch (e) {
         console.log(e);
         alert(e); // WARN blocks ui

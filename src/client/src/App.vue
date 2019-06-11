@@ -9,7 +9,7 @@
 
     <v-content>
       <RequestForm/>
-      <Record/>
+      <Record :recordId="state.activeRecId"/>
       <RecordHistory/>
     </v-content>
   </v-app>
@@ -27,6 +27,7 @@ export default {
     RequestForm,
     Record,
   },
+
   data () {
     return {
       state: store.state,

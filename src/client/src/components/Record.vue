@@ -1,7 +1,12 @@
 <template>
-  <v-container>
-    <p>record comp</p>
-    <p>{{ record.id }} </p>
+  <v-container v-if="record">
+    <p>showing record {{record.id}} </p>
+    <ul>
+      <li>id: {{ record.id }}</li>
+      <li>top words: {{ topWords(record) }}</li>
+      <li>file: {{ record.originalText.substring(0, 50) }}</li>
+    </ul>
+    <p></p>
   </v-container>
 </template>
 
@@ -32,6 +37,9 @@ export default {
   },
 
   methods: {
+    topWords(rec) {
+      return rec.wordCounts.slice(0, 25);
+    }
   }
 }
 </script>
