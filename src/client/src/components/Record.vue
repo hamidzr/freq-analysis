@@ -1,13 +1,17 @@
 <template>
   <v-container v-if="record">
-    <p>showing record {{record.id}} </p>
-    <ul>
-      <li>id: {{ record.id }}</li>
-      <li>removeStopWords?: {{ record.removeStopWords }}</li>
-      <li>top words: {{ topWords(record) }}</li>
-      <li>file: {{ record.originalText.substring(0, 50) }}</li>
-    </ul>
-    <p></p>
+    <v-card>
+      <v-card-title primary-title>
+      <h3>Request: {{record.id}} </h3>
+      <ul>
+        <li>removeStopWords?: {{ record.removeStopWords }}</li>
+        <li>top words: {{ topWords(record) }}</li>
+      </ul>
+      <v-card-actions>
+          <v-btn flat color="orange" @click="downloadOriginalText">Original File</v-btn>
+        </v-card-actions>
+      </v-card-title>
+    </v-card>
   </v-container>
 </template>
 
@@ -40,6 +44,24 @@ export default {
   methods: {
     topWords(rec) {
       return rec.wordCounts.slice(0, 25);
+    },
+
+    downloadOriginalText() {
+      let fname = `record-${this.record.id}-originalText.txt`;
+      this.download(fname, this.record.originalText);
+    },
+
+    download(filename, text) {
+
+      let element = document.createElement('a');
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+      element.setAttribute('download', filename);
+
+      element.style.display = 'none';
+      document.body.appendChild(element);
+
+      element.click();
+      document.body.removeChild(element);
     }
   }
 }
