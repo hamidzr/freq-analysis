@@ -20,3 +20,16 @@ def analyze(lines):
 
   w_counts.sort(key=operator.itemgetter(1), reverse=True) # sort on value(count)
   return w_counts
+
+if __name__ == '__main__':
+  import sys
+  import argparse
+
+  parser = argparse.ArgumentParser(description="file to word mapper")
+  parser.add_argument('--input', help='input file', required=True)
+
+  args = parser.parse_args()
+
+  with open(args.input, 'r') as f:
+    lines = f.readlines()
+    print(analyze(lines))
